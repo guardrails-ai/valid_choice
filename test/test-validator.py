@@ -1,19 +1,19 @@
 from guardrails import Guard
 from pydantic import BaseModel, Field
-from validator import RegexMatch
+from validator import ValidChoices
 
 
 class ValidatorTestObject(BaseModel):
     test_val: str = Field(
         validators=[
-            RegexMatch(regex="a.*", match_type="fullmatch", on_fail="exception")
+            ValidChoices(choices=["choiceA", "choiceB"], on_fail="exception")
         ]
     )
 
 
 TEST_OUTPUT = """
 {
-  "test_val": "a test value"
+  "test_val": "choiceA"
 }
 """
 

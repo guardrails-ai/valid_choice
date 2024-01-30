@@ -1,3 +1,3 @@
-from .main import RegexMatch
+from .main import ValidChoices
 
-__all__ = ["RegexMatch"]
+__all__ = ["ValidChoices"]
