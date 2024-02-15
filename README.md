@@ -17,7 +17,7 @@ This validator enforces that an LLM generated output belongs to a subset of acce
 # Installation
 
 ```bash
-$ guardrails hub install hub://guardrails/valid_choice
+$ guardrails hub install hub://guardrails/valid_choices
 ```
 
 # Usage Examples
