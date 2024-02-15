@@ -10,7 +10,7 @@ from guardrails.validator_base import (
 )
 
 
-@register_validator(name="guardrails/valid_choices", data_type="all")
+@register_validator(name="guardrails/valid_choice", data_type="all")
 class ValidChoices(Validator):
     """Validates that a value is within the acceptable choices.
 

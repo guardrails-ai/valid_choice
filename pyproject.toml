@@ -1,5 +1,5 @@
 [project]
-name = "valid_choices"
+name = "valid_choice"
 version = "0.0.0"
 description = "Validates that a value is within the acceptable choices."
 authors = [
