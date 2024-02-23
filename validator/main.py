@@ -10,7 +10,7 @@ from guardrails.validator_base import (
 )
 
 
-@register_validator(name="guardrails/valid_choice", data_type="all")
+@register_validator(name="guardrails/valid_choices", data_type="all")
 class ValidChoices(Validator):
     """Validates that a value is within the acceptable choices.
 
@@ -18,7 +18,7 @@ class ValidChoices(Validator):
 
     | Property                      | Description                       |
     | ----------------------------- | --------------------------------- |
-    | Name for `format` attribute   | `valid-choices`                   |
+    | Name for `format` attribute   | `guardrails/valid_choices`        |
     | Supported data types          | `all`                             |
     | Programmatic fix              | None                              |
 
@@ -28,13 +28,16 @@ class ValidChoices(Validator):
 
     def __init__(self, choices: List[Any], on_fail: Optional[Callable] = None):
         super().__init__(on_fail=on_fail, choices=choices)
+
+        if not choices:
+            raise ValueError("Please provide a list of choices.")
         self._choices = choices
 
     def validate(self, value: Any, metadata: Dict) -> ValidationResult:
         """Validates that a value is within a range."""
         logger.debug(f"Validating {value} is in choices {self._choices}...")
 
-        if value not in self._choices:
+        if value.strip() not in self._choices:
             return FailResult(
                 error_message=f"Value {value} is not in choices {self._choices}.",
             )
