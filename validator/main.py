@@ -37,7 +37,10 @@ class ValidChoices(Validator):
         """Validates that a value is within a range."""
         logger.debug(f"Validating {value} is in choices {self._choices}...")
 
-        if value.strip() not in self._choices:
+        if isinstance(value, str):
+            value = value.strip()
+        
+        if value not in self._choices:
             return FailResult(
                 error_message=f"Value {value} is not in choices {self._choices}.",
             )
